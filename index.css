@@ -9,15 +9,6 @@ body {
     color: #127dff;
 }
 
-.tooltip {
-    position: absolute;
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid lightgrey;
-    font-size: small;
-    padding: 5px;
-}
-
 .big {
     text-align: center;
     font-weight: bold;
