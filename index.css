@@ -1,10 +1,12 @@
 /* Insert your global CSS here. */
 body {
     font-family: sans-serif;
+
 }
-.horiz-flex-center {
-    display: flex;
-    align-items: center;
+.head {
+    text-align: center;
+    width: 100%;
+    color: #127dff;
 }
 
 .tooltip {
@@ -15,3 +17,26 @@ body {
     font-size: small;
     padding: 5px;
 }
+
+.big {
+    text-align: center;
+    font-weight: bold;
+    font-size: 110%;
+    width: 100%;
+    color: #4321db;
+}
+
+#d3 {
+    width:70%
+}
+
+.column {
+  float: left;
+  padding: 10px;
+  height: 100%;
+}
+
+.desc {
+    width: 12%;
+}
+
