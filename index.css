@@ -36,16 +36,30 @@ body {
     width: 12%;
 }
 
-.axis line{
+.x-axis line{
     stroke: white;
     color:white;
 }
 
-.axis path{
+.x-axis path{
     stroke: white;
     color:white;
 }
 
-.axis {
+.x-axis {
+    stroke: white;
+}
+
+.y-axis line{
+    stroke: white;
+    color:white;
+}
+
+.y-axis path{
+    stroke: white;
+    color:white;
+}
+
+.y-axis {
     stroke: white;
 }

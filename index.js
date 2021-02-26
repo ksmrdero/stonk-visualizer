@@ -22,24 +22,51 @@ d3.csv("data/GME.csv",
 
   function(data) {
 
-    // Add X axis --> it is a date format
+    // Add X axis
     var x = d3.scaleTime()
       .domain(d3.extent(data, d => d.date))
-      .range([ 0, width ]);
+      .range([margin.left, width - margin.right])
 
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .attr("class", "axis")
-      .call(d3.axisBottom(x));
+    var xAxis = svg.append("g")
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+      .attr("class", "x-axis")
+      .attr("clip-path", "url(#clip)")
+      .call(d3.axisBottom(x)
+        .tickSizeOuter(0));
+
+    svg.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .style("fill","white")
+      .text("Date");  
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([d3.min(data, d => +d.value) - pad, d3.max(data, d => +d.value) + pad])
-      .range([ height, 0 ]);
+    .domain([d3.min(data, d => +d.value) - pad, d3.max(data, d => +d.value) + pad])
+    .range([height - margin.bottom, margin.top])
 
-    svg.append("g")
-      .attr("class", "axis")
+    var yAxis = svg.append("g")
+      .attr("class", "y-axis")
+      .attr("transform", `translate(${margin.left},0)`)
+      .text("Value")
       .call(d3.axisLeft(y));
+    
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 40 - (margin.left))
+      .attr("x",10 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .style("fill","white")
+      .text("Value");
+
+
+    var line = d3.line()
+      .defined(d => !isNaN(d.value))
+      .x(d => x(d.date))
+      .y(d => y(d.value))
 
     var bisect = d3.bisector(function(d) { return d.date; }).left;
 
@@ -60,18 +87,25 @@ d3.csv("data/GME.csv",
         .attr("text-anchor", "left")
         .attr("fill", "white")
         .attr("alignment-baseline", "middle")
+    
+    var defs = svg.append("defs").append("clipPath")
+      .attr("id", "clip")
+      .append("rect")
+      .attr("x", margin.left)
+      .attr("width", width - margin.right)
+      .attr("height", height);    
+       
   
     // Add the line
-    svg.append("path")
+    var path = svg.append("path")
       .datum(data)
+      .attr("class", "path")
       .attr("fill", "none")
+      .attr("clip-path", "url(#clip)")
       .attr("stroke", "white")
       .attr("stroke-width", .5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
-        )
-  
+      .attr("d", line);
+    
     // Rectangle covering graph to trigger mouse events
     svg.append('rect')
       .style("fill", "none")
@@ -103,5 +137,37 @@ d3.csv("data/GME.csv",
       function mouseout() {
         focus.style("opacity", 1)
         focusText.style("opacity",1)
+      }
+
+
+      //Zooming Functionality
+      svg.call(zoom);
+      function zoom(svg) {
+
+        var extent = [
+          [margin.left, margin.top], 
+          [width - margin.right, height - margin.top]
+        ];
+    
+        var zooming = d3.zoom()
+          .scaleExtent([1, 3])
+          .translateExtent(extent)
+          .extent(extent)
+          .on("zoom", zoomed);
+    
+        svg.call(zooming);
+    
+        function zoomed() {
+    
+          x.range([margin.left, width - margin.right]
+            .map(d => d3.event.transform.applyX(d)));
+    
+          svg.select(".path")
+            .attr("d", line);
+    
+          svg.select(".x-axis")
+            .call(d3.axisBottom(x)
+              .tickSizeOuter(0));
+        }
       }
   })
