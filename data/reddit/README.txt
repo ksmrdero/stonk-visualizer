@@ -1,5 +1,5 @@
 data.csv is formatted as follows:
-stock (no-stock means no filter), subreddit, sentiment, num_pos, num_neutral, num_neg, time (epoch time), date
+stock (no-stock means no filter), subreddit, sentiment, num_pos, num_neutral, num_neg, end time (epoch format), end time (date format)
 
 sentiment = 100 * (# positive - # negative) / (total)
 if all posts/comments analyzed are positive, sentiment = 100,

@@ -2,6 +2,7 @@ import praw
 import json
 import csv
 import time
+import datetime
 import os
 
 from psaw import PushshiftAPI
@@ -53,7 +54,7 @@ def get_data(start, end, interval, stocks, subreddits, mode='w', path='stonk-vis
         for stock in stocks:
             curr_time = start
             # while curr_time > end:
-            while curr_time > start - interval * 15:
+            while curr_time > end:
                 posts = []
                 comments = []
 
@@ -69,7 +70,7 @@ def get_data(start, end, interval, stocks, subreddits, mode='w', path='stonk-vis
                                                     before = curr_time,
                                                     after = curr_time-interval,
                                                     filter = ['body'],
-                                                    limit=100))
+                                                    limit=200))
                     else:
                         # posts += list(api.search_submissions(subreddit = sr,
                         #                             q = alias, # only get posts that contain q
@@ -82,7 +83,7 @@ def get_data(start, end, interval, stocks, subreddits, mode='w', path='stonk-vis
                                                     before = curr_time,
                                                     after = curr_time-interval,
                                                     filter = ['body'],
-                                                    limit=100))
+                                                    limit=200))
 
                 #if posts:
                     #print("posts:",posts[:4])
@@ -117,7 +118,7 @@ def get_data(start, end, interval, stocks, subreddits, mode='w', path='stonk-vis
                     else:
                         num_neutral += 1
                 
-                print("skipped:", num_skipped,"/",len(posts))
+                #print("skipped:", num_skipped,"/",len(posts))
                 d = {
                     "stock" : stock[0],
                     "subreddit" : sr,
@@ -134,8 +135,12 @@ def get_data(start, end, interval, stocks, subreddits, mode='w', path='stonk-vis
 
                 # check if time is equal to 8:30am CST. if it is, then subtract 17 hrs to get to 3:30pm again
                 # if sunday, subtract 2 days to get to previous friday
-                curr_time -= interval
-                
+                if time.strftime('%H:%M', time.localtime(curr_time)) == '8:30':
+                    curr_time -= 17 * 60 * 60
+                    if datetime.datetime.weekday(datetime.datetime.fromtimestamp(curr_time)) == 6:
+                        curr_time -= 24 * 60 * 60
+                else:
+                    curr_time -= interval
 
     print("Lines written:", lines_written)
     csvfile.close()
