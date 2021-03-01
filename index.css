@@ -29,7 +29,7 @@ body {
 .column {
   float: left;
   height: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .desc {

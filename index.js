@@ -14,6 +14,10 @@ var svg = d3.select("#d3")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
+function parseDate(date) {
+  return date.toString().split(' ').slice(0, 4).join(' ')
+}
+
 //Read the data
 d3.csv("data/GME.csv",
   function(d){
@@ -129,14 +133,14 @@ d3.csv("data/GME.csv",
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.value))
         focusText
-          .html("Date:" + selectedData.date + "  -  " + "Value:" + selectedData.value)
+          .html("Date: " + parseDate(selectedData.date) + "  -  " + "Value:" + selectedData.value)
           .attr("x", x(selectedData.date)+20)
           .attr("y", y(selectedData.value)+20)
       }
 
       function mouseout() {
-        focus.style("opacity", 1)
-        focusText.style("opacity",1)
+        focus.style("opacity", 0)
+        focusText.style("opacity",0)
       }
 
 

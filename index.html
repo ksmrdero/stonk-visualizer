@@ -16,16 +16,18 @@
     <div id="stock" class="column desc">
       <!-- stock list -->
       <div class="big">Stocks</div>
-      <input type="checkbox" id="stock1">
-      <label> Dow Jones</label><br>
-      <input type="checkbox" id="stock2">
-      <label> NASDAQ</label><br>
-      <input type="checkbox" id="stock3">
-      <label> S&P</label><br>
-      <input type="checkbox" id="stock4">
-      <label> GOOG</label><br>
-      <input type="checkbox" id="stock5">
-      <label> GME</label><br>
+      <form>
+        <input type="radio" id="stock1" name="stock">
+        <label> Dow Jones</label><br>
+        <input type="radio" id="stock2" name="stock">
+        <label> NASDAQ</label><br>
+        <input type="radio" id="stock3" name="stock">
+        <label> S&P</label><br>
+        <input type="radio" id="stock4" name="stock">
+        <label> GOOG</label><br>
+        <input type="radio" id="stock5" name="stock">
+        <label> GME</label><br>
+      </form>
     </div>
     
     <div id="d3" class="column">
@@ -36,23 +38,25 @@
     <div id="tweet" class="column">
       <!-- tweets/sentiment -->
       <div class="big">Tweets</div>
-      <input type="checkbox" id="tweet1">
+      <input type="radio" id="tweet1">
       <label> Elon Musk</label><br>
-      <input type="checkbox" id="tweet2">
+      <input type="radio" id="tweet2">
       <label> Donald Trump</label><br>
-      <input type="checkbox" id="tweet3">
+      <input type="radio" id="tweet3">
       <label> Jon Boorman</label><br>
-      <input type="checkbox" id="tweet4">
+      <input type="radio" id="tweet4">
       <label> Alpha Trends</label><br><br>
 
+      <form>
+        <div class="big">Sentiment</div>
+        <input type="radio" id="sentiment1" name="sentiment">
+        <label> r/wsb</label><br>
+        <input type="radio" id="sentiment2" name="sentiment">
+        <label> r/stocks</label><br>
+        <input type="radio" id="sentiment3" name="sentiment">
+        <label> Twitter</label><br>
+      </form>
 
-      <div class="big">Sentiment</div>
-      <input type="checkbox" id="sentiment1">
-      <label> r/wsb</label><br>
-      <input type="checkbox" id="sentiment2">
-      <label> r/stocks</label><br>
-      <input type="checkbox" id="sentiment3">
-      <label> Twitter</label><br>
     </div>
   </div>
   
