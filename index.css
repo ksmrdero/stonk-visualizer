@@ -1,12 +1,16 @@
 /* Insert your global CSS here. */
 body {
-    font-family: sans-serif;
-
+    font-family: Verdana;
+    background-color:#2e2759;
+    color: #f7faff;
 }
+
 .head {
     text-align: center;
     width: 100%;
-    color: #127dff;
+    color: #f7faff;
+    margin-top:60px;
+    font-weight: 300;
 }
 
 .big {
@@ -14,7 +18,8 @@ body {
     font-weight: bold;
     font-size: 110%;
     width: 100%;
-    color: #4321db;
+    color: #f7faff;
+    padding: 10px;
 }
 
 #d3 {
@@ -23,11 +28,38 @@ body {
 
 .column {
   float: left;
-  padding: 10px;
   height: 100%;
+  text-align: center;
 }
 
 .desc {
     width: 12%;
 }
 
+.x-axis line{
+    stroke: white;
+    color:white;
+}
+
+.x-axis path{
+    stroke: white;
+    color:white;
+}
+
+.x-axis {
+    stroke: white;
+}
+
+.y-axis line{
+    stroke: white;
+    color:white;
+}
+
+.y-axis path{
+    stroke: white;
+    color:white;
+}
+
+.y-axis {
+    stroke: white;
+}
