@@ -53,6 +53,7 @@ body {
 .y-axis line{
     stroke: white;
     color:white;
+    font-size: 4em;
 }
 
 .y-axis path{
