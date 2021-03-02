@@ -2,10 +2,11 @@
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
   width = 800 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom,
-  pad = 0.5;
-
+  pad = 0.5,
+  curr_stock = "SPY",
+  curr_sub = "wallstreetbets";
 // draw spy and wsb first
-draw("SPY")
+draw(curr_stock, curr_sub)
 
 function parseDate(date) {
   return date.toString().split(' ').slice(0, 5).join(' ')
@@ -14,15 +15,19 @@ function parseDate(date) {
 d3.selectAll("input[name='stock']").on("change", function () {
   $("#d3").empty();
   console.log(this.id);
-  draw(this.id);
+  draw(this.id, curr_sub);
+  curr_stock = this.id;
 });
 
 d3.selectAll("input[name='sentiment']").on("change", function () {
+  $("#d3").empty();
   console.log(this.id);
+  draw(curr_stock, this.id);
+  curr_sub = this.id;
 });
 
 
-function draw(name) {
+function draw(stock, sub) {
   var svg = d3.select("#d3")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -32,7 +37,7 @@ function draw(name) {
       "translate(" + margin.left + "," + margin.top + ")");
 
   //Read the data
-  d3.csv("data/new/GME_wallstreetbets.csv", //`data/merged/${name}.csv`,
+  d3.csv(`data/new/${stock}_${sub}.csv`, //`data/merged/${name}.csv`,
     function (d) {
       return { date: d3.timeParse("%s")(d.timestamp), value: d.change, score:d.score }
     },
