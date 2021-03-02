@@ -2,10 +2,11 @@
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
   width = 800 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom,
-  pad = 0.5,
-  curr_stock = "SPY",
+  pad = 1,
+  curr_stock = "GME",
   curr_sub = "wallstreetbets";
-// draw spy and wsb first
+
+// draw gme and wsb first
 draw(curr_stock, curr_sub)
 
 function parseDate(date) {
@@ -39,7 +40,7 @@ function draw(stock, sub) {
   //Read the data
   d3.csv(`data/new/${stock}_${sub}.csv`, //`data/merged/${name}.csv`,
     function (d) {
-      return { date: d3.timeParse("%s")(d.timestamp), value: d.change, score:d.score }
+      return { date: d3.timeParse("%s")(d.timestamp), value: d.price_change, score:d.score_change, raw_score: d.raw_score, price: d.close}
     },
 
     function (data) {
@@ -56,17 +57,20 @@ function draw(stock, sub) {
         .call(d3.axisBottom(x)
           .tickSizeOuter(0));
 
-      svg.append("text")
-        .attr("transform",
-          "translate(" + (width / 2) + " ," +
-          (height + margin.top + 20) + ")")
-        .style("text-anchor", "middle")
-        .style("fill", "white")
-        .text("Date");
+      // svg.append("text")
+      //   .attr("transform",
+      //     "translate(" + (width / 2) + " ," +
+      //     (height + margin.top + 20) + ")")
+      //   .style("text-anchor", "middle")
+      //   .style("fill", "white")
+        // .text("Date");
 
+
+      var abs_min = d3.min([d3.min(data, d => +d.value), d3.min(data, d => +d.score)])
+      var abs_max = d3.max([d3.max(data, d => +d.value), d3.max(data, d => +d.score)])
       // Add Y axis
       var y = d3.scaleLinear()
-        .domain([d3.min(data, d => +d.score) - pad, d3.max(data, d => +d.score) + pad])
+        .domain([abs_min - pad, abs_max + pad])
         .range([height - margin.bottom, margin.top])
 
       var yAxis = svg.append("g")
@@ -114,6 +118,31 @@ function draw(stock, sub) {
         .attr("fill", "white")
         .attr("alignment-baseline", "middle")
 
+      var focus2 = svg
+        .append('g')
+        .append('circle')
+        .style("fill", "orange")
+        .attr("stroke", "orange")
+        .attr('r', 5.5)
+        .style("opacity", 0)
+
+      // Create the text
+      var focusText2 = svg
+        .append('g')
+        .append('text')
+        .style("opacity", 0)
+        .attr("text-anchor", "left")
+        .attr("fill", "orange")
+        .attr("alignment-baseline", "middle")
+
+      var focusDate = svg
+          .append('g')
+          .append('text')
+          .style("opacity", 0)
+          .attr("text-anchor", "left")
+          .attr("fill", "white")
+          .attr("alignment-baseline", "middle")
+
       var defs = svg.append("defs").append("clipPath")
         .attr("id", "clip")
         .append("rect")
@@ -139,7 +168,7 @@ function draw(stock, sub) {
         .attr("id", "line2")
         .attr("fill", "none")
         .attr("clip-path", "url(#clip)")
-        .attr("stroke", "red")
+        .attr("stroke", "orange")
         .attr("stroke-width", .5)
         .attr("d", line2);
 
@@ -156,24 +185,48 @@ function draw(stock, sub) {
       function mouseover() {
         focus.style("opacity", 1)
         focusText.style("opacity", 1)
+        focus2.style("opacity", 1)
+        focusText2.style("opacity", 1)
+        focusDate.style("opacity", 1)
       }
 
       function mousemove() {
         var x0 = x.invert(d3.mouse(this)[0]);
         var i = bisect(data, x0, 1);
-        selectedData = data[i]
+        selectedData = data[i];
+
+        // max_x_value = d3.min([x(selectedData.date) + 20,width-100])
+
         focus
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.value))
         focusText
-          .html("Date: " + parseDate(selectedData.date) + "\n" + "Value: " + selectedData.value)
-          .attr("x", x(selectedData.date) + 20)
-          .attr("y", y(selectedData.value) + 20)
+          .html("Price: " + selectedData.price)
+          .attr("x", width-120)
+          .attr("y", 0)
+          // .attr("y", y(selectedData.value) + 20)
+// "Date: " + parseDate(selectedData.date) + "\n" + 
+        focus2
+          .attr("cx", x(selectedData.date))
+          .attr("cy", y(selectedData.score))
+        focusText2
+          .html("Sentiment: " + selectedData.raw_score)
+          .attr("x", width - 120)
+          .attr("y", 20)
+
+        focusDate
+          .html(parseDate(selectedData.date))
+          .attr("x",width-220)
+          .attr("y", height+20)
+        
       }
 
       function mouseout() {
         focus.style("opacity", 0)
         focusText.style("opacity", 0)
+        focus2.style("opacity", 0)
+        focusText2.style("opacity", 0)
+        focusDate.style("opacity", 0)
       }
 
 
