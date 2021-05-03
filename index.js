@@ -201,18 +201,20 @@ function draw(stock, sub) {
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.value))
         focusText
-          .html("Price: " + selectedData.price)
-          .attr("x", width-120)
+          .html("Price Change: " + selectedData.value + "% ($" + selectedData.price + ")")
+          .attr("x", width-220)
           .attr("y", 0)
+          .attr("font-size", "10px")
           // .attr("y", y(selectedData.value) + 20)
 // "Date: " + parseDate(selectedData.date) + "\n" + 
         focus2
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.score))
         focusText2
-          .html("Sentiment: " + selectedData.raw_score)
-          .attr("x", width - 120)
+          .html("Sentiment Change: " + selectedData.score + "% (" + selectedData.raw_score + ")")
+          .attr("x", width - 220)
           .attr("y", 20)
+          .attr("font-size", "10px")
 
         focusDate
           .html(parseDate(selectedData.date))
