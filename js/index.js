@@ -137,6 +137,13 @@ function draw(stock, sub) {
           .attr("fill", "white")
           .attr("alignment-baseline", "middle")
 
+        var defs = svg.append("defs").append("clipPath")
+          .attr("id", "clip")
+          .append("rect")
+          .attr("x", margin.left)
+          .attr("width", width - margin.right)
+          .attr("height", height);
+
       // Add the line
       var path = svg.append("path")
         .datum(data)
