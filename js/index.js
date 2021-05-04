@@ -197,8 +197,11 @@ function draw(stock, sub, tweets) {
         .on('mouseout', mouseout);
 
 
+        d3.selectAll(".remove").remove()
+
         var tooltip = d3.select("#tweettxt")
         .append("div")
+        .attr('class','remove')
         .style("opacity", 0)
         .attr("id", "tooltip")
         .style("background-color", "white")
@@ -221,7 +224,6 @@ function draw(stock, sub, tweets) {
         }
         var mousemove1 = function (d) {
           console.log('hit');
-          tooltip.empty();
           tooltip
             .html("@" + d.user+ " "+ d.text)
             .style("left", (d3.mouse(this)[0] + 10) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
