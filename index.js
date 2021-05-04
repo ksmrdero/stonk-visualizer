@@ -57,17 +57,9 @@ function draw(stock, sub) {
         .call(d3.axisBottom(x)
           .tickSizeOuter(0));
 
-      // svg.append("text")
-      //   .attr("transform",
-      //     "translate(" + (width / 2) + " ," +
-      //     (height + margin.top + 20) + ")")
-      //   .style("text-anchor", "middle")
-      //   .style("fill", "white")
-        // .text("Date");
-
-
       var abs_min = d3.min([d3.min(data, d => +d.value), d3.min(data, d => +d.score)])
       var abs_max = d3.max([d3.max(data, d => +d.value), d3.max(data, d => +d.score)])
+      
       // Add Y axis
       var y = d3.scaleLinear()
         .domain([abs_min - pad, abs_max + pad])
@@ -88,6 +80,7 @@ function draw(stock, sub) {
         .text("% Change");
 
 
+      // Plot Lines
       var line = d3.line()
         .defined(d => !isNaN(d.value))
         .x(d => x(d.date))
@@ -104,35 +97,35 @@ function draw(stock, sub) {
       var focus = svg
         .append('g')
         .append('circle')
-        .style("fill", "white")
-        .attr("stroke", "white")
+        .style("fill", "#40B0A6")
+        .attr("stroke", "#40B0A6")
         .attr('r', 5.5)
         .style("opacity", 0)
 
-      // Create the text
-      var focusText = svg
+      // Create the text for tooltip
+      var tooltipText = svg
         .append('g')
         .append('text')
         .style("opacity", 0)
         .attr("text-anchor", "left")
-        .attr("fill", "white")
+        .attr("fill", "#40B0A6")
         .attr("alignment-baseline", "middle")
 
       var focus2 = svg
         .append('g')
         .append('circle')
-        .style("fill", "orange")
-        .attr("stroke", "orange")
+        .style("fill", "#E1BE6A")
+        .attr("stroke", "#E1BE6A")
         .attr('r', 5.5)
         .style("opacity", 0)
 
       // Create the text
-      var focusText2 = svg
+      var tooltipText2 = svg
         .append('g')
         .append('text')
         .style("opacity", 0)
         .attr("text-anchor", "left")
-        .attr("fill", "orange")
+        .attr("fill", "#E1BE6A")
         .attr("alignment-baseline", "middle")
 
       var focusDate = svg
@@ -143,14 +136,6 @@ function draw(stock, sub) {
           .attr("fill", "white")
           .attr("alignment-baseline", "middle")
 
-      var defs = svg.append("defs").append("clipPath")
-        .attr("id", "clip")
-        .append("rect")
-        .attr("x", margin.left)
-        .attr("width", width - margin.right)
-        .attr("height", height);
-
-
       // Add the line
       var path = svg.append("path")
         .datum(data)
@@ -158,18 +143,19 @@ function draw(stock, sub) {
         .attr("id", "line1")
         .attr("fill", "none")
         .attr("clip-path", "url(#clip)")
-        .attr("stroke", "white")
-        .attr("stroke-width", .5)
+        .attr("stroke", "#40B0A6")
+        .attr("stroke-width", .8)
         .attr("d", line);
 
-      var path2 = svg.append("path")
+      // Sentiment Plot Line 
+      var sentiment_line = svg.append("path")
         .datum(data)
         .attr("class", "path")
         .attr("id", "line2")
         .attr("fill", "none")
         .attr("clip-path", "url(#clip)")
-        .attr("stroke", "orange")
-        .attr("stroke-width", .5)
+        .attr("stroke", "#E1BE6A")
+        .attr("stroke-width", .8)
         .attr("d", line2);
 
       // Rectangle covering graph to trigger mouse events
@@ -184,9 +170,9 @@ function draw(stock, sub) {
 
       function mouseover() {
         focus.style("opacity", 1)
-        focusText.style("opacity", 1)
+        tooltipText.style("opacity", 1)
         focus2.style("opacity", 1)
-        focusText2.style("opacity", 1)
+        tooltipText2.style("opacity", 1)
         focusDate.style("opacity", 1)
       }
 
@@ -195,39 +181,41 @@ function draw(stock, sub) {
         var i = bisect(data, x0, 1);
         selectedData = data[i];
 
-        // max_x_value = d3.min([x(selectedData.date) + 20,width-100])
 
+      
         focus
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.value))
-        focusText
+        tooltipText
           .html("Price Change: " + selectedData.value + "% ($" + selectedData.price + ")")
           .attr("x", width-220)
           .attr("y", 0)
           .attr("font-size", "10px")
-          // .attr("y", y(selectedData.value) + 20)
-// "Date: " + parseDate(selectedData.date) + "\n" + 
+
+         
         focus2
           .attr("cx", x(selectedData.date))
           .attr("cy", y(selectedData.score))
-        focusText2
+        tooltipText2
           .html("Sentiment Change: " + selectedData.score + "% (" + selectedData.raw_score + ")")
           .attr("x", width - 220)
           .attr("y", 20)
           .attr("font-size", "10px")
 
         focusDate
-          .html(parseDate(selectedData.date))
-          .attr("x",width-220)
+          .html("Date: " + parseDate(selectedData.date))
+          .attr("x",width-450)
           .attr("y", height+20)
+          .attr("font-size", "14px")
         
       }
 
+      // Text disappears when mouse is out of frame
       function mouseout() {
         focus.style("opacity", 0)
-        focusText.style("opacity", 0)
+        tooltipText.style("opacity", 0)
         focus2.style("opacity", 0)
-        focusText2.style("opacity", 0)
+        tooltipText2.style("opacity", 0)
         focusDate.style("opacity", 0)
       }
 
@@ -254,13 +242,9 @@ function draw(stock, sub) {
           x.range([margin.left, width - margin.right]
             .map(d => d3.event.transform.applyX(d)));
 
-          // svg.select(".path")
-          //   .attr("d", line);
-
           svg.select("#line1")
             .attr("d", line);
           
-
           svg.select("#line2")
             .attr("d", line2);
 
