@@ -93,7 +93,7 @@ function draw(tweet, stock){
       .attr("transform", "rotate(-90)")
       .attr("y", 60 - (margin.left))
       .attr("x", 60 - (height / 2))
-      .text("Price Returns")
+      .text("Price Change ($)")
 
     // // Color scale: give me a specie name, I return a color
     // var color = d3.scaleOrdinal()
