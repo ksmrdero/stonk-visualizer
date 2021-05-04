@@ -180,7 +180,7 @@ function draw(stock, sub, tweets) {
         if (d.user != curr_tweets) {
           return;
         }
-        var t = {date: d3.timeParse("%s")(d.timestamp), text: d.text, user: d.user, link: d.link};
+        var t = {date: d3.timeParse("%s")(d.timestamp), text: d.text, user: d.user, link: "https://"+d.link};
         return t;
       },
   
@@ -213,6 +213,7 @@ function draw(stock, sub, tweets) {
           tooltip
             .style("opacity", 1)
 
+          console.log(d.link);
           var ref = d3.select("#link")
             .attr("href", d.link)
 
@@ -220,6 +221,7 @@ function draw(stock, sub, tweets) {
         }
         var mousemove1 = function (d) {
           console.log('hit');
+          tooltip.empty();
           tooltip
             .html("@" + d.user+ " "+ d.text)
             .style("left", (d3.mouse(this)[0] + 10) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
