@@ -9,23 +9,33 @@ body {
 h2 {
     /* color: black!important  */
     margin-top: 5px;
+    width: 62% !important;
+}
+
+.down {
+    margin-top: 100px;
+}
+.semidown {
+    margin-top: 50px;
 }
 
 #tweettxt{
     /* text-align: center; */
     border-radius: 5px 5px 5px 5px;
     padding: 34px 10px 10px 10px;
-    margin-left: 35%;
+    margin-top: -95px;
+    margin-left: 62%;
     margin-bottom: 10px;
-    background: url('data/empty_tweet.jpg');
+    background: url('../imgs/empty_tweet.jpg');
     background-repeat: no-repeat;
-    background-size: 350px 100px;
+    background-size: 300px 100px;
     background-color: white;
     color: black !important;
     width: 350px;
-    height: 100px;
+    height: 90px;
     overflow-wrap: break-word;
-    display: none;
+    /* display: none; */
+    position: absolute;
 }
 #reddit {
     width: 100px;

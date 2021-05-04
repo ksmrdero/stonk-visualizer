@@ -7,7 +7,7 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
   curr_stock = "GME_returns",
 
 
-
+$("#instructions").show().delay(5000).fadeOut();
 draw(curr_tweet, curr_stock)
 
 function parseDate(date) {
@@ -55,16 +55,6 @@ function draw(tweet, stock){
       .domain([abs_min - x_pad, abs_max + x_pad])
       .range([margin.left, width - margin.right])
 
-    // Add X axis
-    // var x = d3.scaleTime()
-    //   .domain(d3.extent(data, d => d.timestamp))
-    //   .range([margin.left, width - margin.right])
-
-    // var xAxis = svg.append("g")
-    //   .attr("transform", `translate(0,${height - margin.bottom})`)
-    //   .attr("class", "x-axis")
-    //   .attr("clip-path", "url(#clip)")
-    //   .call(d3.axisBottom(x).tickSize(-height * 1.3).ticks(10))
 
     svg.append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -81,11 +71,6 @@ function draw(tweet, stock){
       .domain([abs_min - pad, abs_max + pad])
       .range([height - margin.bottom, margin.top])
 
-    // var yAxis = svg.append("g")
-    //   .attr("class", "y-axis")
-    //   .attr("transform", `translate(${margin.left},0)`)
-    //   .call(d3.axisLeft(y));
-
     svg.append("g")
       .attr("transform", `translate(${margin.left},0)`)
       .attr("class", "y-axis")
@@ -99,14 +84,14 @@ function draw(tweet, stock){
     svg.append("text")
       .attr("text-anchor", "end")
       .attr("x", width / 2 + margin.left - 5)
-      .attr("y", height + margin.top + 20)
+      .attr("y", height + margin.top)
       .text("Sentiment");
 
     // Y axis label:
     svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")
-      .attr("y", 40 - (margin.left))
+      .attr("y", 60 - (margin.left))
       .attr("x", 60 - (height / 2))
       .text("Price Returns")
 
@@ -132,7 +117,6 @@ function draw(tweet, stock){
 
 
     // A function that change this tooltip when the user hover a point.
-    // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
     var mouseover = function (d) {
       console.log("hitt")
       tooltip
@@ -142,6 +126,8 @@ function draw(tweet, stock){
 
       var ref = d3.select("#link")
         .attr("href", d.link)
+
+      d3.select(this).style("fill", "red")
     }
     var mousemove = function (d) {
       console.log('hit');
@@ -158,6 +144,7 @@ function draw(tweet, stock){
         .transition()
         .duration(200)
         // .style("opacity", 0)
+      d3.select(this).style("fill", "black")
     }
     // Add dots
     svg.append('g')
@@ -171,23 +158,6 @@ function draw(tweet, stock){
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
-    // // Add dots
-    // svg.append('g')
-    //   .selectAll("dot")
-    //   .data(data.filter(function (d, i) { return i < 50 })) // the .filter part is just to keep a few dots on the chart, not all of them
-    //   .enter()
-    //   .append("circle")
-    //   .attr("cx", function (d) { return x(d.GrLivArea); })
-    //   .attr("cy", function (d) { return y(d.SalePrice); })
-    //   .attr("r", 7)
-    //   .style("fill", "#69b3a2")
-    //   .style("opacity", 0.3)
-    //   .style("stroke", "white")
-    //   .on("mouseover", mouseover)
-    //   .on("mousemove", mousemove)
-    //   .on("mouseleave", mouseleave)
-
-
   })
 
 }

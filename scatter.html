@@ -5,7 +5,7 @@
   <title>Stonk Visualizer</title>
   <meta name="description" content="D3 starter template">
   <meta name="author" content="">
-  <link rel="stylesheet" href="scatter.css">
+  <link rel="stylesheet" href="css/scatter.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     
@@ -15,19 +15,19 @@
 <body>
   <a href="index.html">
     <div id="redditdiv">
-      <img id="reddit" src="data/reddit.png">
+      <img id="reddit" src="imgs/reddit.png">
     </div>
   </a>
 
   <a href="scatter.html">
     <div id="twitterdiv">
-      <img id="twitterlogo" src="data/twitter.jpg">
+      <img id="twitterlogo" src="imgs/twitter.jpg">
     </div>
   </a>
 
   <div id="instructions">
     Click on the Reddit logo <br>
-    view Reddit data!
+    to view Reddit data!
   </div>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -40,7 +40,7 @@
   
 
   <div class="row">
-    <div id="stock" class="column desc">
+    <div id="stock" class="column down">
       <!-- stock list -->
       <div class="big">Tweets</div>
       <form>
@@ -55,12 +55,12 @@
       </form>
     </div>
     
-    <div id="d3" class="column">
+    <div id="d3" class="column semidown">
       <!-- d3 visualization -->
       <!-- <svg width="850" height="450"></svg> -->
     </div>
     
-    <div id="tweet" class="column">
+    <div id="tweet" class="column down">
 
       <form>
         <div class="big">Sentiment</div>
@@ -84,7 +84,7 @@
   </div>
   
 
-  <script src="scatter.js"></script>
+  <script src="js/scatter.js"></script>
 
   <!-- <p padding="3000px">this is some text</p> -->
 </body>

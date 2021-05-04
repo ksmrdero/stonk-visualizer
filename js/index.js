@@ -6,6 +6,7 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
   curr_stock = "GME",
   curr_sub = "wallstreetbets";
 
+$("#instructions").show().delay(5000).fadeOut();
 // draw gme and wsb first
 draw(curr_stock, curr_sub)
 
