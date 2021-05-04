@@ -14,6 +14,28 @@
     }
     h2 {
       /* color: black!important  */
+      margin-top: 5px;
+    }
+
+    #tweettxt{
+      /* text-align: center; */
+      border-radius: 5px 5px 5px 5px;
+      padding: 34px 10px 10px 10px;
+      margin-left: 35%;
+      margin-bottom: 10px;
+      background: url('data/empty_tweet.jpg');
+      background-repeat: no-repeat;
+      background-size: 350px 100px;
+      background-color: white;
+      color: black !important;
+      /* top: 50%; */
+      /* left: 50%; */
+      /* margin-top: -50px; */
+      width: 350px;
+      height: 100px;
+      overflow-wrap: break-word;
+      display: none;
+      /* margin-left: -50px; */
     }
   </style>
 </head>
@@ -23,6 +45,11 @@
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <h2 class="head" left="400px">Social Media's Effect on the Stock Market</h2>
   
+  <!-- <div> -->
+    <div id='tweettxt'></div>
+  <!-- </div> -->
+  
+
   <div class="row">
     <div id="stock" class="column desc">
       <!-- stock list -->
@@ -30,9 +57,9 @@
       <form>
         <input type="radio" id="JoeBiden" name="Tweets">
         <label> Joe Biden</label><br>
-        <input type="radio" id="elonmusk" name="Tweets">
+        <input type="radio" id="elonmusk" name="Tweets" checked>
         <label> Elon Musk</label><br>
-        <input type="radio" id="sundarpichai" name="Tweets" checked>
+        <input type="radio" id="sundarpichai" name="Tweets">
         <label> Sundar Pichai</label><br>
         <input type="radio" id="tim_cook" name="Tweets">
         <label> Tim Cook</label><br>
@@ -50,7 +77,7 @@
         <div class="big">Sentiment</div>
         <input type="radio" id="BTC_returns" name="sentiment">
         <label> Bitcoin </label><br>
-        <input type="radio" id="DOGE_returns" name="sentiment" checked>
+        <input type="radio" id="DOGE_returns" name="sentiment">
         <label> Dogecoin </label><br>
         <input type="radio" id="TSLA_returns" name="sentiment">
         <label> Tesla </label><br>
@@ -58,7 +85,7 @@
         <label> Google </label><br>
         <input type="radio" id="AAPL_returns" name="sentiment">
         <label> Apple </label><br>
-        <input type="radio" id="GME_returns" name="sentiment">
+        <input type="radio" id="GME_returns" name="sentiment" checked>
         <label> GameStop </label><br>
         <input type="radio" id="SPY_returns" name="sentiment">
         <label> S&P 500 </label><br>
