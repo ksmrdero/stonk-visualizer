@@ -50,6 +50,7 @@ body {
 
 #tweettxt{
     /* text-align: center; */
+    display: inline-block;
     border-radius: 5px 5px 5px 5px;
     padding: 34px 10px 10px 10px;
     margin-bottom: 10px;

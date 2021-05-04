@@ -244,8 +244,9 @@ function draw(stock, sub, tweets) {
         .data(tweet_data)
         .enter()
         .append("circle")
+        .attr("class", "temp")
         .attr("cx", function (d) { console.log(x(d.date)); return x(d.date); })
-        .attr("cy", function (d) { return y(10); })
+        .attr("cy", function (d) { return y(0); })
         .attr("r", 6)
         .style("fill", "#99e0e8")
         .on("mouseover", mouseover1)
@@ -338,11 +339,14 @@ function draw(stock, sub, tweets) {
             svg.select(".x-axis")
               .call(d3.axisBottom(x)
                 .tickSizeOuter(0));
-                
+            
+            svg.selectAll(".temp")
+              .exit().remove()
+
             svg.selectAll("circle")
               .data(tweet_data)
-              .attr("cx", function (d) { console.log(x(d.date)); return x(d.date); })
-              .attr("cy", function (d) { return y(10); });
+              .attr("cx", function (d) { return x(d.date); })
+              .attr("cy", function (d) { return y(0); });
           }
         }
       })
