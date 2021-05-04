@@ -1,4 +1,4 @@
-,user,timestamp,txt,sentiment,link,included symbols,BTC_returns,DOGE_returns,TSLA_returns,GOOG_returns,AAPL_returns,GME_returns,SPY_returns
+,user,timestamp,tweet text,tweet sentiment,link,included symbols,BTC_returns,DOGE_returns,TSLA_returns,GOOG_returns,AAPL_returns,GME_returns,SPY_returns
 0,JoeBiden,1609490700,"In 2021, we’re going to build a brighter future. https://t.co/YjzT7aw5zQ",0.3818,twitter.com/JoeBiden/status/1344836995441426432,[],2753.11524,0.00493,1.79,0,-0.03,0,0.25
 1,JoeBiden,1609493981,RT @NYRE: Here is the last interview for President-Elect @JoeBiden and future First Lady @DrBiden in 2020! 🇺🇸 #RockinEve https://t.co/wcSnl…,0,twitter.com/JoeBiden/status/1344850758068539393,[],2753.11524,0.00493,1.79,0,-0.03,0,0.25
 2,JoeBiden,1609496880,Here’s to 2021. https://t.co/9HAQOSWgvO,0,twitter.com/JoeBiden/status/1344862916194021377,[],2753.11524,0.00493,1.79,0,-0.03,0,0.25

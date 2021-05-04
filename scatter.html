@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stonk Visualizer</title>
+  <meta name="description" content="D3 starter template">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    body {
+      background-color: grey;
+      /* color: black */
+    }
+    h2 {
+      /* color: black!important  */
+    }
+  </style>
+</head>
+
+<body>
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <h2 class="head" left="400px">Social Media's Effect on the Stock Market</h2>
+  
+  <div class="row">
+    <div id="stock" class="column desc">
+      <!-- stock list -->
+      <div class="big">Tweets</div>
+      <form>
+        <input type="radio" id="JoeBiden" name="Tweets">
+        <label> Joe Biden</label><br>
+        <input type="radio" id="elonmusk" name="Tweets">
+        <label> Elon Musk</label><br>
+        <input type="radio" id="sundarpichai" name="Tweets" checked>
+        <label> Sundar Pichai</label><br>
+        <input type="radio" id="tim_cook" name="Tweets">
+        <label> Tim Cook</label><br>
+      </form>
+    </div>
+    
+    <div id="d3" class="column">
+      <!-- d3 visualization -->
+      <!-- <svg width="850" height="450"></svg> -->
+    </div>
+    
+    <div id="tweet" class="column">
+
+      <form>
+        <div class="big">Sentiment</div>
+        <input type="radio" id="BTC_returns" name="sentiment">
+        <label> Bitcoin </label><br>
+        <input type="radio" id="DOGE_returns" name="sentiment" checked>
+        <label> Dogecoin </label><br>
+        <input type="radio" id="TSLA_returns" name="sentiment">
+        <label> Tesla </label><br>
+        <input type="radio" id="GOOG_returns" name="sentiment">
+        <label> Google </label><br>
+        <input type="radio" id="AAPL_returns" name="sentiment">
+        <label> Apple </label><br>
+        <input type="radio" id="GME_returns" name="sentiment">
+        <label> GameStop </label><br>
+        <input type="radio" id="SPY_returns" name="sentiment">
+        <label> S&P 500 </label><br>
+      </form>
+
+    </div>
+  </div>
+  
+
+<!-- 
+  <div style="position: relative">
+    <div id="tool" class="tooltip" style="opacity: 0">My tooltip!</div>
+    <svg width="500" height="300"></svg>
+  </div> -->
+
+
+  <script src="scatter.js"></script>
+
+  <!-- <p padding="3000px">this is some text</p> -->
+</body>
+</html>
