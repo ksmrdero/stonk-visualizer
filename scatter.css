@@ -1,0 +1,143 @@
+/* Insert your global CSS here. */
+body {
+    font-family: Verdana;
+    /* background-color:#2e2759; */
+    background-color: lightblue;
+    color: black;
+}
+
+h2 {
+    /* color: black!important  */
+    margin-top: 5px;
+}
+
+#tweettxt{
+    /* text-align: center; */
+    border-radius: 5px 5px 5px 5px;
+    padding: 34px 10px 10px 10px;
+    margin-left: 35%;
+    margin-bottom: 10px;
+    background: url('data/empty_tweet.jpg');
+    background-repeat: no-repeat;
+    background-size: 350px 100px;
+    background-color: white;
+    color: black !important;
+    width: 350px;
+    height: 100px;
+    overflow-wrap: break-word;
+    display: none;
+}
+#reddit {
+    width: 100px;
+    height: 100px;
+    
+    /* background-size: auto; */
+}
+#redditdiv {
+    position: fixed;
+    margin-top: 390px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 10px;
+    /* display: inline-block; */
+}
+
+#twitterlogo {
+    width: 100px;
+    height: 100px;
+    
+    /* background-size: auto; */
+}
+#twitterdiv {
+    position: fixed;
+    margin-top: 390px;
+    margin-right: 10px;
+    right:0em;
+    text-align: center;
+    font-size: 10px;
+    /* display: inline-block; */
+}
+
+#instructions {
+    position: absolute;
+    margin-top: -45px;
+    font-size: 15px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+.head {
+    text-align: center;
+    width: 100%;
+    color: black;
+    margin-top:60px;
+    font-weight: 300;
+}
+
+.big {
+    text-align: center;
+    font-weight: bold;
+    font-size: 110%;
+    width: 100%;
+    color: black;
+    padding: 10px;
+}
+
+#d3 {
+    width:70%
+}
+
+.column {
+  float: left;
+  height: 100%;
+  /* text-align: center; */
+}
+
+.desc {
+    width: 12%;
+}
+
+/* .x-axis line{
+    stroke: white;
+    color:white;
+}
+
+.x-axis path{
+    stroke: white;
+    color:white;
+} */
+
+.x-axis {
+    /* stroke: white; */
+    font-size: 15px;
+}
+
+.y-axis line{
+    stroke: white;
+    color:white;
+    font-size: 4em;
+}
+
+.y-axis path{
+    stroke: white;
+    color:white;
+}
+
+.y-axis {
+    /* stroke: white; */
+    font-size: 15px;
+}

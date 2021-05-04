@@ -64,3 +64,40 @@ body {
 .y-axis {
     stroke: white;
 }
+
+#instructions {
+    position: absolute;
+    margin-top: -45px;
+    font-size: 15px;
+}
+
+#reddit {
+    width: 100px;
+    height: 100px;
+    
+    /* background-size: auto; */
+}
+#redditdiv {
+    position: fixed;
+    margin-top: 390px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 10px;
+    /* display: inline-block; */
+}
+
+#twitterlogo {
+    width: 100px;
+    height: 100px;
+    
+    /* background-size: auto; */
+}
+#twitterdiv {
+    position: fixed;
+    margin-top: 390px;
+    margin-right: 10px;
+    right:0em;
+    text-align: center;
+    font-size: 10px;
+    /* display: inline-block; */
+}

@@ -68,7 +68,7 @@ function draw(tweet, stock){
 
     svg.append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
-      // .attr("class", "x-axis")
+      .attr("class", "x-axis")
       .call(d3.axisBottom(x).tickSize(-height * 1.3).ticks(10))
       .select(".domain").remove()
 
@@ -88,6 +88,7 @@ function draw(tweet, stock){
 
     svg.append("g")
       .attr("transform", `translate(${margin.left},0)`)
+      .attr("class", "y-axis")
       .call(d3.axisLeft(y).tickSize(-width * 1.3).ticks(7))
       .select(".domain").remove()
 
@@ -166,7 +167,7 @@ function draw(tweet, stock){
       .append("circle")
       .attr("cx", function (d) { return x(d.sentiment); })
       .attr("cy", function (d) { return y(d[stock]); })
-      .attr("r", 5)
+      .attr("r", 4)
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
