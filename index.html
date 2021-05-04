@@ -7,9 +7,11 @@
   <meta name="author" content="">
   <link rel="stylesheet" href="index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <h2 class="head" left="400px">Social Media's Effect on the Stock Market</h2>
   
@@ -38,6 +40,8 @@
 
       <form>
         <div class="big">Sentiment</div>
+        <input type="radio" id="overall" name="sentiment" checked>
+        <label> Overall </label><br>
         <input type="radio" id="wallstreetbets" name="sentiment" checked>
         <label> r/wsb</label><br>
         <input type="radio" id="stocks" name="sentiment">
