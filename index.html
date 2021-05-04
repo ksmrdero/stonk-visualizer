@@ -52,12 +52,9 @@
       <!-- <svg width="850" height="450"></svg> -->
     </div>
     
-    <div id="tweet" class="column">
-
+    <div id="sentiment" class="column desc">
       <form>
         <div class="big">Sentiment</div>
-        <input type="radio" id="overall" name="sentiment">
-        <label> Overall </label><br>
         <input type="radio" id="wallstreetbets" name="sentiment" checked>
         <label> r/wsb</label><br>
         <input type="radio" id="stocks" name="sentiment">
@@ -65,8 +62,30 @@
         <input type="radio" id="investing" name="sentiment">
         <label> r/investing</label><br>
       </form>
+    </div>    
+
+    <div id="tweets" class="column desc">
+      <form>
+        <div class="big">Tweets</div>
+        <input type="radio" id="elonmusk" name="tweets" checked>
+        <label> Elon Musk </label><br>
+        <input type="radio" id="JoeBiden" name="tweets">
+        <label> Joe Biden </label><br>
+        <input type="radio" id="sundarpichai" name="tweets">
+        <label> Sundar Pichai </label><br>
+        <input type="radio" id="tim_cook" name="tweets">
+        <label> Tim Cook </label><br>
+      </form>
+    </div>
 
     </div>
+  </div>
+  <div class="row center tweet">
+    <!-- <blockquote class="twitter-tweet" id="tweet-embed"><p></p></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  -->
+    
+    <a class="twitter-tweet" id="link" target="_blank">
+      <div id='tweettxt'></div>
+    </a>
   </div>
   
 

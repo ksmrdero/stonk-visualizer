@@ -28,12 +28,40 @@ body {
 
 .column {
   float: left;
-  height: 100%;
   /* text-align: center; */
 }
 
 .desc {
     width: 12%;
+}
+
+.center {
+    text-align: center;
+}
+.tweet {
+    width:  50%;
+    /* border: 1px solid black; */
+    margin: auto;
+}
+
+.twitter-tweet {
+    margin: auto;
+}
+
+#tweettxt{
+    /* text-align: center; */
+    border-radius: 5px 5px 5px 5px;
+    padding: 34px 10px 10px 10px;
+    margin-bottom: 10px;
+    background: url('../imgs/empty_tweet.jpg');
+    background-repeat: no-repeat;
+    background-size: 300px 100px;
+    background-color: white;
+    color: black !important;
+    width: 350px;
+    height: 90px;
+    overflow-wrap: break-word;
+    /* display: none; */
 }
 
 .x-axis line{
@@ -65,6 +93,20 @@ body {
     stroke: white;
 }
 
+
+.row {
+    /* border: 1px solid gray; */
+    height: 400px;
+}
+.row2 {
+    margin: 0 15%;
+    width: 800px;
+}
+
+.row2 > h3 {
+    text-align: center;
+}
+
 #instructions {
     position: absolute;
     margin-top: -45px;
@@ -87,8 +129,8 @@ body {
 }
 
 #twitterlogo {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 110px;
     
     /* background-size: auto; */
 }
@@ -100,4 +142,7 @@ body {
     text-align: center;
     font-size: 10px;
     /* display: inline-block; */
+}
+#link {
+    /* border: 1px solid black; */
 }
