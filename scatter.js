@@ -17,6 +17,7 @@ function parseDate(date) {
 
 d3.selectAll("input[name='Tweets']").on("change", function () {
   $("#d3").empty();
+  $("#tweettxt").empty();
   console.log(this.id);
   draw(this.id, curr_stock);
   curr_tweet = this.id;
@@ -24,6 +25,7 @@ d3.selectAll("input[name='Tweets']").on("change", function () {
 
 d3.selectAll("input[name='sentiment']").on("change", function () {
   $("#d3").empty();
+  $("#tweettxt").empty();
   console.log(this.id);
   draw(curr_tweet, this.id);
   curr_stock = this.id;
@@ -43,6 +45,8 @@ function draw(tweet, stock){
 
   //Read the data
   d3.csv(`data/final_new_data/${tweet}.csv`, function (data) {
+    console.log(tweet);
+    console.log(stock);
     // Add Y axis
     var abs_min = d3.min(data, d => +d.sentiment)
     var abs_max = d3.max(data, d => +d.sentiment)
@@ -116,12 +120,13 @@ function draw(tweet, stock){
     var tooltip = d3.select("#tweettxt")
       .append("div")
       .style("opacity", 0)
-      .attr("class", "tooltip")
+      .attr("id", "tooltip")
       .style("background-color", "white")
       .style("border", "solid")
       .style("border-width", "1px")
       .style("border-radius", "5px")
       .style("padding", "10px")
+      .style("font-size", "14px")
       
 
 
@@ -133,14 +138,17 @@ function draw(tweet, stock){
         .style("opacity", 1)
       
       var f = d3.select("#tweettxt").style("display", "block")
+
+      var ref = d3.select("#link")
+        .attr("href", d.link)
     }
     var mousemove = function (d) {
       console.log('hit');
       tooltip
-        .html(d.txt)
+        .html("@" + d.user+ " "+ d.txt)
         .style("left", (d3.mouse(this)[0] + 10) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
         .style("top", (d3.mouse(this)[1]) + "px")
-  
+      
     }
 
     // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
